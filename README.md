@@ -61,7 +61,7 @@ Ikuti langkah-langkah berikut untuk menjalankan project secara lokal.
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/username-kamu/nama-repo-kamu.git
+git clone https://github.com/allyncid/football-league-management-api.git
 cd nama-repo-kamu
 ```
 
