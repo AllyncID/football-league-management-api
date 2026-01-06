@@ -1,59 +1,182 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ⚽ League Management System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+API RESTful sederhana yang dibangun menggunakan **Laravel 11** untuk mengelola data liga sepak bola.
+Sistem ini mencakup pengelolaan **tim**, **pemain**, **jadwal pertandingan**, serta **perhitungan klasemen otomatis**.
 
-## About Laravel
+## 🚀 Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🔐 Autentikasi Aman
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Menggunakan **Laravel Sanctum**
+* Endpoint: Register, Login, Logout, dan Get User
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🏟️ Manajemen Tim
 
-## Learning Laravel
+* CRUD data klub sepak bola
+* Data tim meliputi:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+  * Nama Tim
+  * Homebase
+  * Logo
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 👥 Manajemen Pemain
 
-## Laravel Sponsors
+* Mendaftarkan pemain ke dalam tim
+* Validasi posisi pemain:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+  * `GK` (Goalkeeper)
+  * `DF` (Defender)
+  * `MF` (Midfielder)
+  * `FW` (Forward)
 
-### Premium Partners
+### ⚽ Pertandingan (Matches)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* Membuat jadwal pertandingan
+* Validasi agar tim tidak bisa bertanding melawan dirinya sendiri
+* Update skor pertandingan
 
-## Contributing
+### 📊 Klasemen Otomatis (Auto Standings)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* Klasemen dihitung otomatis saat skor diperbarui
+* Aturan poin:
 
-## Code of Conduct
+  * Menang: **+3**
+  * Seri: **+1**
+  * Kalah: **0**
+* Urutan klasemen berdasarkan:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  1. Poin tertinggi
+  2. Selisih gol (*Goal Difference*)
 
-## Security Vulnerabilities
+## 🛠️ Teknologi yang Digunakan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* **Laravel 11** – Framework PHP
+* **MySQL** – Database
+* **Laravel Sanctum** – Autentikasi API Token
 
-## License
+## 📦 Cara Instalasi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Ikuti langkah-langkah berikut untuk menjalankan project secara lokal.
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/username-kamu/nama-repo-kamu.git
+cd nama-repo-kamu
+```
+
+### 2️⃣ Install Dependencies
+
+Pastikan **Composer** sudah terinstall.
+
+```bash
+composer install
+```
+
+### 3️⃣ Konfigurasi Environment
+
+Salin file `.env.example` menjadi `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Sesuaikan konfigurasi database di file `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database_kamu
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 4️⃣ Generate App Key
+
+```bash
+php artisan key:generate
+```
+
+### 5️⃣ Migrasi Database
+
+```bash
+php artisan migrate
+```
+
+### 6️⃣ Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Aplikasi akan berjalan di:
+
+```
+http://127.0.0.1:8000
+```
+
+## 📚 Dokumentasi API Singkat
+
+> ⚠️ Endpoint yang dilindungi membutuhkan **Bearer Token**
+> Tambahkan pada Header request:
+
+```
+Authorization: Bearer {access_token}
+```
+
+### 🔐 Auth
+
+| Method | Endpoint             | Deskripsi                    |
+| ------ | -------------------- | ---------------------------- |
+| POST   | `/api/auth/register` | Mendaftar akun operator baru |
+| POST   | `/api/auth/login`    | Login dan mendapatkan token  |
+| POST   | `/api/auth/logout`   | Logout (hapus token)         |
+| GET    | `/api/auth/me`       | Cek user yang sedang login   |
+
+---
+
+### 🏟️ Teams & Players
+
+| Method | Endpoint                 | Deskripsi                    |
+| ------ | ------------------------ | ---------------------------- |
+| GET    | `/api/teams`             | List semua tim               |
+| POST   | `/api/teams`             | Tambah tim baru              |
+| GET    | `/api/players?team_id=1` | List pemain (filter per tim) |
+| POST   | `/api/players`           | Tambah pemain baru           |
+
+---
+
+### ⚽ Matches & Standings
+
+| Method | Endpoint            | Deskripsi                         |
+| ------ | ------------------- | --------------------------------- |
+| POST   | `/api/matches`      | Buat jadwal pertandingan          |
+| PUT    | `/api/matches/{id}` | Update skor & status pertandingan |
+| GET    | `/api/standings`    | Lihat klasemen sementara          |
+
+
+## 🧪 Pengujian (Testing)
+
+Disarankan menggunakan **Postman**:
+
+1. Login terlebih dahulu untuk mendapatkan `access_token`
+2. Masukkan token ke:
+
+   * Authorization → Bearer Token
+3. Uji endpoint sesuai kebutuhan
+
+
+## 📝 Lisensi
+
+Project ini bersifat **open-source** dan dilisensikan di bawah:
+
+**MIT License**
+
+## ✨ Catatan
+
+Project ini cocok untuk:
+* Latihan REST API Laravel
+* Fondasi sistem liga sepak bola skala kecil
+
+Silakan **fork**, **clone**, dan **kembangkan lebih lanjut** sesuai kebutuhan
